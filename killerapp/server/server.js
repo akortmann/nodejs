@@ -1,29 +1,55 @@
 /**
- * Created by akortmann on 16.12.2014.
+ * Create node js express instance
+ *
+ * @param {object} express
  */
+var fs = require('fs'),
 
+    express = require('express'),
 
-    var connect = require('node_modules/connect');
-    var serveStatic = require('node_modules/serve-static');
-    var socket = require('node_modules/socket.io');
+    app = express(),
 
-    //var server = connect().
-    //    use(function(req, res) {
-    //        res.end('Hallo Browser!');
-    //    }).listen(8181);
+    bodyParser = require('body-parser'),
+    compression = require('compression'),
 
-    var server = connect().
-        use(connect.static('/home/akortmann/killerapp/client')).
-        listen(8181);
+    cors = require('cors'),
 
-    var io = socket.listen(server);
-    console.log("Server started and listen to http://127.0.0.1:8181");
-    console.log('JAUSEN');
+    corsOptions = {
+        methods: [ 'GET', 'PUT', 'POST', 'DELETE', 'OPTIONS' ],
+        allowedHeaders: [ 'Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With' ],
+        credentials: true
+    },
 
-    io.sockets.on('connection', function(socket) {
-        console.log('client serverjs connected!');
-    });
+    socketio = require('socket.io'),
+    io = new socketio({ path: '/' }),
 
-    io.sockets.on('connection', function(socket) {
-        socket.emit('hello', 'Paul');
-    });
+    log4js = require('log4js'),
+    logger = log4js.getLogger();
+
+//Init diskspace node js extension
+//var diskspace = require('diskspace');
+
+//log server startup
+logger.info('Starting node js server...');
+
+//disable overhead headers
+app.disable('x-powered-by');
+app.disable('etag');
+
+//setup url encoding, expected format is json
+app.use(compression());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+
+//create server & and attach server
+var port = process.env.PORT || 8080;
+var server = app.listen(port, function () {
+    logger.info('Andy\'s first running socket API listening at %s:%d', server.address().address, server.address().port);
+});
+
+io.attach(server);
+
+io.on('connection', function (socket) {
+    logger.debug('Socket %s connected', socket.id);
+});
