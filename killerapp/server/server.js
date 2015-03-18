@@ -3,9 +3,9 @@
  */
 
 
-    var connect = require('/home/akortmann/killerapp/server/node_modules/connect');
-    var serveStatic = require('/home/akortmann/killerapp/server/node_modules/serve-static');
-    var socket = require('/home/akortmann/killerapp/server/node_modules/socket.io');
+    var connect = require('node_modules/connect');
+    var serveStatic = require('node_modules/serve-static');
+    var socket = require('node_modules/socket.io');
 
     //var server = connect().
     //    use(function(req, res) {
