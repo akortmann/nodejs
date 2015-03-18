@@ -12,7 +12,20 @@
     "cors": "^2.4.1",
     "express": "^4.7.4",
     "log4js": "^0.6.16",
-    "socket.io": "^1.0.6"
+    "socket.io": "^1.0.6",
+    "ms": "latest",
+    "escape-html": "latest",
+    "on-finished": "latest",
+    "send": "latest",
+    "etag": "latest",
+    "methods": "latest",
+    "accepts": "latest",
+    "mime-types": "latest",
+    "fresh": "latest",
+    "range-parser": "latest",
+    "cookie-signature": "latest",
+    "cookie": "latest",
+    "vary": "latest"
   },
   "devDependencies": {},
   "scripts": {
