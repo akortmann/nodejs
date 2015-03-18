@@ -6,7 +6,13 @@
   "dependencies": {
     "connect": "^3.3.5",
     "serve-static": "^1.7.1",
-    "socket.io": "^1.2.1"
+    "socket.io": "^1.2.1",
+    "body-parser": "^1.5.2",
+    "compression": "^1.0.9",
+    "cors": "^2.4.1",
+    "express": "^4.7.4",
+    "log4js": "^0.6.16",
+    "socket.io": "^1.0.6"
   },
   "devDependencies": {},
   "scripts": {
