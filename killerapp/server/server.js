@@ -43,7 +43,7 @@ app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
 //create server & and attach server
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8989;
 var server = app.listen(port, function () {
     logger.info('Andy\'s first running socket API listening at %s:%d', server.address().address, server.address().port);
 });
