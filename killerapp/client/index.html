@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html ng-app="App">
+<head>
+    <meta charset="UTF-8">
+    <title>KillerApp</title>
+</head>
+<body>
+<div ng-view></div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect();
+    socket.on('hello', function(data) {
+        console.log('Ohh '+data);
+    });
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+<script src="js/app.js"></script>
+
+
+
+</body>
+</html>
