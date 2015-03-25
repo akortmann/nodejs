@@ -3,21 +3,16 @@
  */
 
 
-    var connect = require('/home/akortmann/killerapp/server/node_modules/connect');
-    var serveStatic = require('/home/akortmann/killerapp/server/node_modules/serve-static');
-    var socket = require('/home/akortmann/killerapp/server/node_modules/socket.io');
-
-    //var server = connect().
-    //    use(function(req, res) {
-    //        res.end('Hallo Browser!');
-    //    }).listen(8181);
+    var connect = require('connect');
+    var serveStatic = require('serve-static');
+    var socket = require('socket.io');
 
     var server = connect().
-        use(connect.static('/home/akortmann/killerapp/client')).
-        listen(8181);
+        use(connect.static('/client')).
+        listen(1337);
 
     var io = socket.listen(server);
-    console.log("Server started and listen to http://127.0.0.1:8181");
+    console.log("Server started and listen to http://127.0.0.1:1337");
     console.log('JAUSEN');
 
     io.sockets.on('connection', function(socket) {
