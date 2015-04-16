@@ -3,15 +3,14 @@
 
     if(isset($_GET['submit'])){
 
-        if(trim($_POST['name']) != "" && trim($_POST['penisSize'] != "")){
+        if(trim($_POST['name']) != ""){
 
-            $msg = '<h1>'.$_POST['name']." hat einen ".$_POST['penisSize']."cm langen Penis!</h1>";
+            $msg = $_POST['name']." schreibt: ".$_POST['nachricht'];
 
             //set POST variables
-            $url = 'http://localhost:9090/push/send/';
+            $url = 'http://akortmann@indermache.net:9090/push/send/';
             $fields = array(
-                'name' => urlencode($_POST['name']),
-                'penisSize' => urlencode($_POST['penisSize'])
+                'msg' => urlencode($msg)
             );
 
             $fields_string = "";
@@ -37,7 +36,7 @@
             curl_close($ch);
 
         }else{
-            $msg = "<h1>Pimmel.. gib was ein!</h1>";
+            $msg = "";
         }
     }else{
         $msg = "";
@@ -49,19 +48,23 @@
 <head>
     <meta charset="UTF-8">
     <title>KillerApp</title>
-    <script src="http://localhost:1337/socket.io/socket.io.js"></script>
+    <script src="http://akortmann.indermache.net:1337/socket.io/socket.io.js"></script>
+    <script src="http://akortmann.indermache.net:1337/socket.io/socket.io.js"></script>
 <script>
     var socket = io.connect(\'http://akortmann.indermache.net:1337\');
-//    socket.on(\'hello\', function(data) {
-//        console.log(\'Ohh \'+data);
-//    });
+    socket.on(\'push\', function(data) {
+        console.log(data);
+        var textnode = document.createTextNode(data.msg);
+        document.getElementById("msgContainer").appendChild(textnode);
+    });
+
 </script>
 </head>
 <body>
-<div class="notice">'.$msg.'</div>
+<div id="msgContainer" style="width: 800px; height: 500px; border: 1px solid #000; overflow: scroll"></div>
 <form action="index.php?submit=true" method="POST">
     <input type="text" name="name" value="" placeholder="Name.."/>
-    <input type="text" name="penisSize" value="" placeholder="Penis-Size in cm .. e.g. 36"/>
+    <textarea name="nachricht"></textarea>
     <input type="submit" name="submit" value="hau raus!" />
 </form>
 </body>
