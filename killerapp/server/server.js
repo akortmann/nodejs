@@ -7,6 +7,7 @@ var fs = require('fs'),
 
     express = require('express'),
 
+<<<<<<< HEAD
     app = express(),
 
     bodyParser = require('body-parser'),
@@ -19,6 +20,19 @@ var fs = require('fs'),
         allowedHeaders: [ 'Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With' ],
         credentials: true
     },
+=======
+    var connect = require('connect');
+    var serveStatic = require('serve-static');
+    var socket = require('socket.io');
+
+    var server = connect().
+        use(connect.static('/client')).
+        listen(1337);
+
+    var io = socket.listen(server);
+    console.log("Server started and listen to http://127.0.0.1:1337");
+    console.log('JAUSEN');
+>>>>>>> master
 
     socketio = require('socket.io'),
     io = new socketio({ path: '/' }),
