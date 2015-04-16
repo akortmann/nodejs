@@ -47,5 +47,6 @@ var fs = require('fs'),
         logger.info('Try to send push...');
         logger.info(req.body);
 
-        io.emit('push', {"msg":req.body.nachricht,"name": req.body.name});
+        io.emit('push', {"msg":req.body.msg,"name": req.body.name});
+        res.status(201).end();
     });

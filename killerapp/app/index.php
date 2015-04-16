@@ -5,12 +5,11 @@
 
         if(trim($_POST['name']) != ""){
 
-            $msg = $_POST['name']." schreibt: ".$_POST['nachricht'];
-
             //set POST variables
             $url = 'http://akortmann@indermache.net:9090/push/send/';
             $fields = array(
-                'msg' => urlencode($msg)
+                'msg' => urlencode($_POST['msg']),
+                'name' => urlencode($_POST['name'])
             );
 
             $fields_string = "";
@@ -49,13 +48,15 @@
     <meta charset="UTF-8">
     <title>KillerApp</title>
     <script src="http://akortmann.indermache.net:1337/socket.io/socket.io.js"></script>
-    <script src="http://akortmann.indermache.net:1337/socket.io/socket.io.js"></script>
 <script>
     var socket = io.connect(\'http://akortmann.indermache.net:1337\');
     socket.on(\'push\', function(data) {
         console.log(data);
-        var textnode = document.createTextNode(data.msg);
+        var textnode = document.createTextNode(data.name+\' schreibt:\'+data.msg);
+        var brTag = document.createElement(\'br\');
+
         document.getElementById("msgContainer").appendChild(textnode);
+        document.getElementById("msgContainer").appendChild(brTag);
     });
 
 </script>
@@ -64,7 +65,7 @@
 <div id="msgContainer" style="width: 800px; height: 500px; border: 1px solid #000; overflow: scroll"></div>
 <form action="index.php?submit=true" method="POST">
     <input type="text" name="name" value="" placeholder="Name.."/>
-    <textarea name="nachricht"></textarea>
+    <textarea name="msg"></textarea>
     <input type="submit" name="submit" value="hau raus!" />
 </form>
 </body>
