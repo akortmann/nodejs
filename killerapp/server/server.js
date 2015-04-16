@@ -25,3 +25,17 @@ var fs = require('fs'),
     io.on('connection', function (socket) {
         logger.debug('Socket %s connected', socket.id);
     });
+
+
+    /**
+     * Recive pushmessage
+     *
+     * @param {object} req
+     * @param {object} res
+     */
+    app.post('/push/send/', function (req, res) {
+
+        logger.info('Try to send push...');
+        logger.info(req);
+        logger.info(res);
+    });
