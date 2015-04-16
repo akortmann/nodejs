@@ -11,6 +11,7 @@ var fs = require('fs'),
     http = require('http'),
     serveStatic = require('serve-static'),
     log4js = require('log4js'),
+    bodyParser = require('body-parser'),
     logger = log4js.getLogger();
 
     var app = express();
@@ -30,8 +31,12 @@ var fs = require('fs'),
     var apiServer = http.createServer(app);
     apiServer.listen(9090);
 
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
 
-    /**
+/**
      * Recive pushmessage
      *
      * @param {object} req
@@ -40,8 +45,7 @@ var fs = require('fs'),
     app.post('/push/send/', function (req, res) {
 
         logger.info('Try to send push...');
-        logger.info(req);
-        logger.info(res);
+        logger.info(req.body);
 
         //io.emit('push', {});
     });

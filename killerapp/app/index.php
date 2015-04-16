@@ -8,7 +8,7 @@
             $msg = '<h1>'.$_POST['name']." hat einen ".$_POST['penisSize']."cm langen Penis!</h1>";
 
             //set POST variables
-            $url = 'http://akortmann.indermache.net:9090/push/send/';
+            $url = 'http://localhost:9090/push/send/';
             $fields = array(
                 'name' => urlencode($_POST['name']),
                 'penisSize' => urlencode($_POST['penisSize'])
