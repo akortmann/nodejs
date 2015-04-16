@@ -8,7 +8,7 @@
             $msg = '<h1>'.$_POST['name']." hat einen ".$_POST['penisSize']."cm langen Penis!</h1>";
 
             //set POST variables
-            $url = 'http://akortmann.indermache.net:1337/push/send/';
+            $url = 'http://akortmann.indermache.net:9090/push/send/';
             $fields = array(
                 'name' => urlencode($_POST['name']),
                 'penisSize' => urlencode($_POST['penisSize'])
@@ -49,7 +49,7 @@
 <head>
     <meta charset="UTF-8">
     <title>KillerApp</title>
-    <script src="http://akortmann.indermache.net:1337/socket.io/socket.io.js"></script>
+    <script src="http://localhost:1337/socket.io/socket.io.js"></script>
 <script>
     var socket = io.connect(\'http://akortmann.indermache.net:1337\');
 //    socket.on(\'hello\', function(data) {

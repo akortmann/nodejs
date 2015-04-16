@@ -8,11 +8,12 @@ var fs = require('fs'),
     express = require('express'),
     socket = require('socket.io'),
     connect = require('connect'),
+    http = require('http'),
     serveStatic = require('serve-static'),
     log4js = require('log4js'),
     logger = log4js.getLogger();
 
-    var app = connect();
+    var app = express();
     var server = connect().
         use(serveStatic('/client')).
         listen(1337);
@@ -24,6 +25,10 @@ var fs = require('fs'),
     io.on('connection', function (socket) {
         logger.debug('Socket %s connected', socket.id);
     });
+
+    // create and launch server on custom port
+    var apiServer = http.createServer(app);
+    apiServer.listen(9090);
 
 
     /**
