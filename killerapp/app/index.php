@@ -1,24 +1,25 @@
 <?php
 
 
-    if($_POST['submit']){
+    if(isset($_GET['submit'])){
 
         if(trim($_POST['name']) != "" && trim($_POST['penisSize'] != "")){
 
             $msg = '<h1>'.$_POST['name']." hat einen ".$_POST['penisSize']."cm langen Penis!</h1>";
 
-            //extract data from the post
-            extract($_POST);
-
             //set POST variables
-            $url = 'http://akortmann.indermache.net/get-post.php';
+            $url = 'http://akortmann.indermache.net:1337/push/send/';
             $fields = array(
-                'name' => urlencode($name),
-                'penisSize' => urlencode($penisSize),
+                'name' => urlencode($_POST['name']),
+                'penisSize' => urlencode($_POST['penisSize'])
             );
 
+            $fields_string = "";
             //url-ify the data for the POST
-            foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+            foreach($fields as $key=>$value) {
+                $fields_string .= $key.'='.$value.'&';
+            }
+
             rtrim($fields_string, '&');
 
             //open connection
