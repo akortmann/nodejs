@@ -7,11 +7,11 @@ var fs = require('fs'),
 
     express = require('express'),
     socket = require('socket.io')
-    connect = require('connect'),
+connect = require('connect'),
     serveStatic = require('serve-static');
 
 
-    var app = connect();
+var app = connect();
 
 
 var server = connect().
@@ -19,7 +19,6 @@ var server = connect().
     listen(1337);
 
 var io = socket.listen(server);
-console.log("Server started and listen to http://127.0.0.1:8181");
 console.log("Server started and listen to http://127.0.0.1:1337");
 console.log('JAUSEN');
 
