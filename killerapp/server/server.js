@@ -6,7 +6,7 @@
 var fs = require('fs'),
 
     express = require('express'),
-    socket = require('socket.io')
+    socket = require('socket.io'),
     connect = require('connect'),
     serveStatic = require('serve-static');
 
@@ -38,4 +38,6 @@ var fs = require('fs'),
         logger.info('Try to send push...');
         logger.info(req);
         logger.info(res);
+
+        //io.emit('push', {});
     });
