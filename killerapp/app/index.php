@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KillerApp</title>
+</head>
+<body>
+<div ng-view></div>
+<script src="http://localhost:1337/socket.io/socket.io.js"></script>
+<script>
+    var socket = io.connect('http://localhost:1337');
+    //    socket.on('hello', function(data) {
+    //        console.log('Ohh '+data);
+    //    });
+</script>
+</body>
+</html>
