@@ -6,24 +6,9 @@
 var fs = require('fs'),
 
     express = require('express'),
-
-<<<<<<< HEAD
-    app = express(),
-
-    bodyParser = require('body-parser'),
-    compression = require('compression'),
-
-    cors = require('cors'),
-
-    corsOptions = {
-        methods: [ 'GET', 'PUT', 'POST', 'DELETE', 'OPTIONS' ],
-        allowedHeaders: [ 'Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With' ],
-        credentials: true
-    },
-=======
-    var connect = require('connect');
-    var serveStatic = require('serve-static');
-    var socket = require('socket.io');
+    connect = require('connect'),
+    serveStatic = require('serve-static'),
+    socket = require('socket.io');
 
     var server = connect().
         use(connect.static('/client')).
@@ -32,7 +17,6 @@ var fs = require('fs'),
     var io = socket.listen(server);
     console.log("Server started and listen to http://127.0.0.1:1337");
     console.log('JAUSEN');
->>>>>>> master
 
     socketio = require('socket.io'),
     io = new socketio({ path: '/' }),
